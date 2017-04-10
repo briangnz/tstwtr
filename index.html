@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Twitter Live Stream Visualizer</title>
+    <script src="socket/socket.io.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Raleway');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #2c202f;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+
+        #container {
+            width: 900px;
+            height: 205px;
+            background-color: #2c202f;
+            position: absolute;
+            /*it can be fixed too*/
+            left: 0px;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            max-width: 100%;
+            max-height: 100%;
+            overflow: auto;
+            -vendor-animation-duration: 3s;
+            -vendor-animation-delay: 2s;
+            -vendor-animation-iteration-count: infinite;
+            -webkit-animation: slideDown .5s ease-in;
+            -moz-animation: slideDown .5s ease-in;
+            -o-animation: slideDown .5s ease-in;
+            animation: slideDown .5s ease-in;
+        }
+
+        @keyframes slideDown {
+            0% {
+                transform: translateX(100%);
+            }
+
+
+
+            100% {
+                transform: translateX(0%);
+            }
+        }
+
+        #container div {
+            height: 50px;
+            width: 50px;
+            margin-left: 35px;
+            margin-top: 36px;
+            background-color: #2c202f;
+        }
+
+        div>img {
+            height: 130px;
+            width: 130px;
+            border: none;
+            background: #fff;
+            border-radius: 10px;
+        }
+
+        #container div h4 {
+            height: 19px;
+            padding: 3px;
+            width: 150px;
+            font-size: 12px;
+            text-align: center;
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: #fff;
+            font-family: 'Raleway', sans-serif;
+            margin-left: -16px;
+        }
+
+        #container p {
+            float: left;
+            position: absolute;
+            margin-left: 200px;
+            top: 0;
+            margin-top: 25px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+            font-size: 20px;
+            height: 150px;
+            width: 675px;
+            background-color: #eeeeee;
+            padding: 25px;
+            line-height: 35px;
+            letter-spacing: 1px;
+            border-radius: 10px;
+        }
+
+        #container>p::after {
+            position: absolute;
+            top: 25px;
+            left: -17px;
+            content: '';
+            width: 0;
+            height: 0;
+            border-right: solid 25px rgba(238, 238, 238, 1);
+            border-bottom: solid 25px transparent;
+            border-top: solid 25px transparent;
+        }
+
+        #container>p::before {
+            content: '#';
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="holder"></div>
+
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+        var socket = io();
+        var count = 0;
+        socket.on('msg', function(msg) {
+            var divTweet =
+                '<div class="" id="container">' +
+                '<div>' +
+                '<img src=' + msg['user']['profile_image_url'] + '>' +
+                '</br>' +
+                '<h4>' + '@' + msg['user']['screen_name'] + '</h4>' +
+                '</div>' +
+                '<p>' + msg['text'] + '</p>' +
+
+                '</div>';
+
+            var holder = $('#holder');
+
+            holder.html(divTweet);
+        });
+    </script>
+</body>
+
+</html>

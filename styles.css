@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #2c202f;
+}
+
+#container {
+    width: 900px;
+    height: 205px;
+    background-color: #2c202f;
+    position: absolute;
+    /*it can be fixed too*/
+    left: 0px;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    max-width: 100%;
+    max-height: 100%;
+    overflow: auto;
+}
+
+#container div {
+    height: 50px;
+    width: 50px;
+    margin-left: 105px;
+    margin-top: 40px;
+    background-color: #2c202f;
+}
+
+div>img {
+    height: 50px;
+    width: 50px;
+    border: none;
+    background: #fff;
+}
+
+#container div h4 {
+    height: 19px;
+    padding: 3px;
+    width: 150px;
+    font-size: 12px;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #fff;
+    font-family: 'Raleway', sans-serif;
+    margin-left: -50px;
+}
+
+#container p {
+    float: left;
+    position: absolute;
+    margin-left: 200px;
+    top: 0;
+    margin-top: 25px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    height: 150px;
+    width: 675px;
+    background-color: #eeeeee;
+    padding: 25px;
+    line-height: 35px;
+    letter-spacing: 1px;
+}
+
+#container>p::after {
+    position: absolute;
+    top: 25px;
+    left: -25px;
+    content: '';
+    width: 0;
+    height: 0;
+    border-right: solid 25px rgba(238, 238, 238, 1);
+    border-bottom: solid 25px transparent;
+    border-top: solid 25px transparent;
+}
